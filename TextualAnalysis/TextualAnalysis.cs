@@ -7,7 +7,7 @@ namespace TextualAnalysis
 {
     public class TextualAnalysis
     {
-        public static string stopWordFilePath = "../../../Data/test.txt";
+        public static string stopWordFilePath = "../../../Data/stop-words.txt";
 
         public TextualAnalysis()
         {
@@ -43,11 +43,10 @@ namespace TextualAnalysis
             {
                 // if ignoreStopWords is true and word is not a stop word, then do this
 
-                if( ignoreStopWords && stopWordHashSet.Contains(word) )
+                if (ignoreStopWords && stopWordHashSet.Contains(word))
                 {
                     continue;
                 }
-
                 if (wordCounts.ContainsKey(word))
                 {
                     wordCounts[word]++;
@@ -64,13 +63,11 @@ namespace TextualAnalysis
 
         public static Dictionary<string, int> ComputeWordFrequenciesFromFile(string path, bool ignoreStopWords = false)
         {
-            // read in the file
+            string text = System.IO.File.ReadAllText(path);
 
-            // call the other method
+            Dictionary<string, int> Result = ComputeWordFrequencies(text, ignoreStopWords);
 
-            // return the result of the other method
-
-            return null;
+            return Result;
         }
 
         private static string[] GetStopWordsFromFile(string path)

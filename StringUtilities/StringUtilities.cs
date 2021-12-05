@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Text.RegularExpressions;
+using System.Collections.Generic;
 
 namespace StringUtilities
 {
@@ -11,14 +12,21 @@ namespace StringUtilities
             var cleanString = Regex.Replace(s, @"[\s+]", "").ToLower();
 
             // make a hash table/set
-            
+            HashSet<char> characters = new HashSet<char>();
 
-            foreach( char c in cleanString)
+            foreach (char c in cleanString)
             {
-
+                if (characters.Contains(c))
+                {
+                    return false;
+                }
+                else
+                {
+                    characters.Add(c);
+                }
             }
 
-            return false;
+            return true;
         }
     }
 }
